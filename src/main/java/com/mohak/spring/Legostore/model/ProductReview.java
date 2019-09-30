@@ -3,6 +3,8 @@ package com.mohak.spring.Legostore.model;
 public class ProductReview {
     private String userName;
     private int rating;
+    
+    public ProductReview(){}
 
     public ProductReview(String userName, int rating) {
         this.userName = userName;

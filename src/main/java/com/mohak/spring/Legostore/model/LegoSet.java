@@ -24,6 +24,8 @@ public class LegoSet {
     @Field("delivery")
     private DeliveryInfo deliveryInfo;
     
+    public LegoSet(){}
+    
     public LegoSet(String name,
                    String theme,
                    LegoSetDifficulty difficulty,

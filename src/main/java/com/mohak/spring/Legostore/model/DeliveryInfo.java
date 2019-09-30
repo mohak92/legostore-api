@@ -6,6 +6,8 @@ public class DeliveryInfo {
     private LocalDate deliveryDate;
     private int deliveryFee;
     private boolean inStock;
+    
+    public DeliveryInfo(){}
 
     public DeliveryInfo(LocalDate deliveryDate,
                         int deliveryFee,
