@@ -1,6 +1,7 @@
 package com.mohak.spring.Legostore.persistence;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import com.mohak.spring.Legostore.model.DeliveryInfo;
 import com.mohak.spring.Legostore.model.LegoSet;
@@ -8,13 +9,22 @@ import com.mohak.spring.Legostore.model.LegoSetDifficulty;
 import com.mohak.spring.Legostore.model.ProductReview;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collection;
 
 
 @Service
 public class DbSeeder implements CommandLineRunner {
+	
+	private MongoTemplate mongoTemplate;
+	
+	public DbSeeder(MongoTemplate mongoTemplate) {
+		this.mongoTemplate = mongoTemplate;
+	}
 
     @Override
     public void run(String... args) {
+    	this.mongoTemplate.dropCollection(LegoSet.class);
+    	
         /*
         Lego Sets
          */
@@ -64,5 +74,8 @@ public class DbSeeder implements CommandLineRunner {
                         new ProductReview("James", 10)
                 )
         );
+        
+        Collection<LegoSet> initialProducts = Arrays.asList(milleniumFalcon, skyPolice, mcLarenSenna,mindstormsEve);
+        mongoTemplate.insertAll(initialProducts);
     }
 }
